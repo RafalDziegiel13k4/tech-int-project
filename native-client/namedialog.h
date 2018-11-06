@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+using namespace std;
+
 namespace Ui {
 class NameDialog;
 }
@@ -14,6 +16,12 @@ class NameDialog : public QDialog
 public:
     explicit NameDialog(QWidget *parent = 0);
     ~NameDialog();
+
+    static QString docName;
+
+private slots:
+
+    void update();
 
 private:
     Ui::NameDialog *ui;

@@ -1,6 +1,8 @@
 #include "namedialog.h"
 #include "ui_namedialog.h"
 
+QString NameDialog::docName = "New Document";
+
 NameDialog::NameDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::NameDialog)
@@ -11,4 +13,9 @@ NameDialog::NameDialog(QWidget *parent) :
 NameDialog::~NameDialog()
 {
     delete ui;
+}
+
+void NameDialog::update()
+{
+    docName = ui->lineEdit->text();
 }
