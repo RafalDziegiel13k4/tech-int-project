@@ -19,6 +19,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    static QString onlineState;
+
 private slots:
     void on_actionExit_triggered();
 

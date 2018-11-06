@@ -1,11 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+QString MainWindow::onlineState = "Online";
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    ui->statusBar->showMessage("Status: " + onlineState);
 
     connect(nameDial, &NameDialog::accepted, this, &MainWindow::addDocument);
 }
