@@ -12,3 +12,15 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_actionExit_triggered()
+{
+    exit(0);
+}
+
+//
+
+void MainWindow::on_actionAbout_triggered()
+{
+    aboutDial->show();
+}
