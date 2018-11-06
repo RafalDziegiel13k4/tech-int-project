@@ -226,6 +226,7 @@
     <property name="title">
      <string>Options</string>
     </property>
+    <addaction name="actionConfig"/>
     <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuNew"/>
@@ -266,6 +267,11 @@
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionConfig">
+   <property name="text">
+    <string>Config</string>
    </property>
   </action>
  </widget>

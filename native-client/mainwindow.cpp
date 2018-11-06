@@ -43,3 +43,8 @@ void MainWindow::on_pushButtonDelete_clicked()
 {
     qDeleteAll(ui->listWidget->selectedItems());
 }
+
+void MainWindow::on_actionConfig_triggered()
+{
+    confDial->show();
+}

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "aboutdialog.h"
 #include "namedialog.h"
+#include "configdialog.h"
 
 using namespace std;
 
@@ -32,12 +33,16 @@ private slots:
 
     void on_pushButtonDelete_clicked();
 
+    void on_actionConfig_triggered();
+
 private:
     Ui::MainWindow *ui;
 
     AboutDialog *aboutDial = new AboutDialog;
 
     NameDialog *nameDial = new NameDialog;
+
+    ConfigDialog *confDial = new ConfigDialog;
 };
 
 #endif // MAINWINDOW_H

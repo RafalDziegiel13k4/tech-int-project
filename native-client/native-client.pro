@@ -16,12 +16,15 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     aboutdialog.cpp \
-    namedialog.cpp
+    namedialog.cpp \
+    configdialog.cpp
 
 HEADERS  += mainwindow.h \
     aboutdialog.h \
-    namedialog.h
+    namedialog.h \
+    configdialog.h
 
 FORMS    += mainwindow.ui \
     aboutdialog.ui \
-    namedialog.ui
+    namedialog.ui \
+    configdialog.ui
