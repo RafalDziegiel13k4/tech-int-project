@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    connect(nameDial, &NameDialog::accepted, this, &MainWindow::addDocument);
 }
 
 MainWindow::~MainWindow()
@@ -21,4 +23,14 @@ void MainWindow::on_actionExit_triggered()
 void MainWindow::on_actionAbout_triggered()
 {
     aboutDial->show();
+}
+
+void MainWindow::on_actionNew_Document_triggered()
+{
+    nameDial->show();
+}
+
+void MainWindow::addDocument()
+{
+    ui->listWidget->addItem(nameDial->docName);
 }

@@ -56,6 +56,9 @@
        <height>271</height>
       </rect>
      </property>
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
      <item>
       <property name="text">
        <string>Document 01</string>
@@ -129,6 +132,9 @@
        <height>41</height>
       </rect>
      </property>
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
      <property name="readOnly">
       <bool>true</bool>
      </property>
@@ -141,6 +147,9 @@
        <width>231</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
      </property>
      <property name="readOnly">
       <bool>true</bool>
@@ -156,6 +165,9 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
     <property name="text">
      <string>View Contents</string>
     </property>
@@ -169,6 +181,9 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
     <property name="text">
      <string>Edit</string>
     </property>
@@ -181,6 +196,9 @@
       <width>141</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
     </property>
     <property name="text">
      <string>Delete</string>

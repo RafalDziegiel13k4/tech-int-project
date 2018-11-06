@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include "aboutdialog.h"
+#include "namedialog.h"
+
+using namespace std;
 
 namespace Ui {
 class MainWindow;
@@ -21,10 +24,16 @@ private slots:
 
     void on_actionAbout_triggered();
 
+    void on_actionNew_Document_triggered();
+
+    void addDocument();
+
 private:
     Ui::MainWindow *ui;
 
     AboutDialog *aboutDial = new AboutDialog;
+
+    NameDialog *nameDial = new NameDialog;
 };
 
 #endif // MAINWINDOW_H
