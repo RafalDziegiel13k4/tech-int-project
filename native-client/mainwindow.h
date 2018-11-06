@@ -28,6 +28,8 @@ private slots:
 
     void addDocument();
 
+    void on_pushButtonDelete_clicked();
+
 private:
     Ui::MainWindow *ui;
 

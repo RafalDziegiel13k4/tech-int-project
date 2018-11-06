@@ -34,3 +34,8 @@ void MainWindow::addDocument()
 {
     ui->listWidget->addItem(nameDial->docName);
 }
+
+void MainWindow::on_pushButtonDelete_clicked()
+{
+    qDeleteAll(ui->listWidget->selectedItems());
+}
