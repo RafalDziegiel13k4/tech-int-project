@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtNetwork>
+#include <iostream>
 #include "aboutdialog.h"
 #include "namedialog.h"
 #include "configdialog.h"
@@ -22,6 +24,8 @@ public:
 
     static QString onlineState;
 
+    static QString webAnswer;
+
 private slots:
     void on_actionExit_triggered();
 
@@ -35,6 +39,10 @@ private slots:
 
     void on_actionConfig_triggered();
 
+    void netManagerFinished(QNetworkReply *netReply);
+
+    void on_pushButtonView_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -43,6 +51,12 @@ private:
     NameDialog *nameDial = new NameDialog;
 
     ConfigDialog *confDial = new ConfigDialog;
+
+    QNetworkAccessManager *netManager = new QNetworkAccessManager;
+
+    QNetworkRequest netReq;
+
+    //QNetworkReply *netReply;
 };
 
 #endif // MAINWINDOW_H
