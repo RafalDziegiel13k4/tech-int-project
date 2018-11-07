@@ -17,8 +17,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(netManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(netManagerFinished(QNetworkReply*)));
     connect(nameDial, &NameDialog::accepted, this, &MainWindow::addDocument);
     this->getDatabase();
-
-    ui->statusBar->showMessage("Status: " + onlineState);
 }
 
 MainWindow::~MainWindow()
@@ -31,11 +29,14 @@ void MainWindow::netManagerFinished(QNetworkReply *netReply)
     if(netReply->error())
     {
         webAnswer = "";
+        onlineState = "Offline";
+        ui->statusBar->showMessage("Status: " + onlineState);
         return;
     }
 
+    onlineState = "Online";
+    ui->statusBar->showMessage("Status: " + onlineState);
     webAnswer = netReply->readAll();
-    //cout << webAnswer.toStdString() << endl;
 
     if(readDatabase) this->processDatabase();
 }
