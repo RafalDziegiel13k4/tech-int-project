@@ -13,13 +13,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    netReq.setUrl(QUrl("http://" + confDial->webAddress + ":" + confDial->webPort + "/docs"));
     connect(netManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(netManagerFinished(QNetworkReply*)));
+    connect(nameDial, &NameDialog::accepted, this, &MainWindow::addDocument);
     this->getDatabase();
 
-
-
     ui->statusBar->showMessage("Status: " + onlineState);
-    connect(nameDial, &NameDialog::accepted, this, &MainWindow::addDocument);
 }
 
 MainWindow::~MainWindow()
@@ -58,7 +57,11 @@ void MainWindow::on_actionNew_Document_triggered()
 
 void MainWindow::addDocument()
 {
-    ui->listWidget->addItem(nameDial->docName);
+    QUrlQuery params;
+    params.addQueryItem("name", nameDial->docName);
+
+    netReq.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+    netManager->post(netReq, params.query(QUrl::FullyEncoded).toUtf8());
 }
 
 void MainWindow::on_pushButtonDelete_clicked()
@@ -74,7 +77,6 @@ void MainWindow::on_actionConfig_triggered()
 void MainWindow::getDatabase()
 {
     readDatabase = true;
-    netReq.setUrl(QUrl("http://" + confDial->webAddress + ":" + confDial->webPort + "/docs"));
     netManager->get(netReq);
 }
 
