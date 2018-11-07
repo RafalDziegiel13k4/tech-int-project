@@ -47,6 +47,8 @@ private slots:
 
     void addDocument();
 
+    void on_actionRefresh_triggered();
+
 private:
     Ui::MainWindow *ui;
 

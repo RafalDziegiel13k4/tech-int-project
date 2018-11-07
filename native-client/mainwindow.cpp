@@ -95,3 +95,9 @@ void MainWindow::on_pushButtonView_clicked()
 {
 
 }
+
+void MainWindow::on_actionRefresh_triggered()
+{
+    ui->listWidget->clear();
+    this->getDatabase();
+}
