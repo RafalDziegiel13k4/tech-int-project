@@ -139,7 +139,7 @@
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEditAuthor_2">
+    <widget class="QLineEdit" name="lineEditDate">
      <property name="geometry">
       <rect>
        <x>140</x>

@@ -15,6 +15,11 @@ public:
     explicit ConfigDialog(QWidget *parent = 0);
     ~ConfigDialog();
 
+    static QString webAddress, webPort;
+
+private slots:
+    void on_buttonBox_accepted();
+
 private:
     Ui::ConfigDialog *ui;
 };

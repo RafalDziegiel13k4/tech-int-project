@@ -65,6 +65,6 @@ void MainWindow::on_actionConfig_triggered()
 
 void MainWindow::on_pushButtonView_clicked()
 {
-    netReq.setUrl(QUrl("https://jsonplaceholder.typicode.com/todos/1"));
+    netReq.setUrl(QUrl("http://" + confDial->webAddress + ":" + confDial->webPort + "/docs"));
     netManager->get(netReq);
 }

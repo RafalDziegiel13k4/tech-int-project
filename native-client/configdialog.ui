@@ -41,7 +41,7 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="labelAddress">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -61,7 +61,7 @@
     <string>Server Address</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="lineEditAddress">
    <property name="geometry">
     <rect>
      <x>140</x>
@@ -82,7 +82,7 @@
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="labelPort">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -102,7 +102,7 @@
     <string>Server Port</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox">
+  <widget class="QSpinBox" name="spinBoxPort">
    <property name="geometry">
     <rect>
      <x>140</x>
