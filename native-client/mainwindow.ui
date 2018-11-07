@@ -59,16 +59,6 @@
      <property name="focusPolicy">
       <enum>Qt::StrongFocus</enum>
      </property>
-     <item>
-      <property name="text">
-       <string>Document 01</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Document 02</string>
-      </property>
-     </item>
     </widget>
     <widget class="QLabel" name="labelDocSel">
      <property name="geometry">

@@ -33,15 +33,19 @@ private slots:
 
     void on_actionNew_Document_triggered();
 
-    void addDocument();
-
     void on_pushButtonDelete_clicked();
 
     void on_actionConfig_triggered();
 
+    void on_pushButtonView_clicked();
+
     void netManagerFinished(QNetworkReply *netReply);
 
-    void on_pushButtonView_clicked();
+    void getDatabase();
+
+    void processDatabase();
+
+    void addDocument();
 
 private:
     Ui::MainWindow *ui;
@@ -56,7 +60,7 @@ private:
 
     QNetworkRequest netReq;
 
-    //QNetworkReply *netReply;
+    QJsonDocument *jsonDoc = new QJsonDocument;
 };
 
 #endif // MAINWINDOW_H

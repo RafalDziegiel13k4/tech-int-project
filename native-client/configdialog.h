@@ -15,7 +15,9 @@ public:
     explicit ConfigDialog(QWidget *parent = 0);
     ~ConfigDialog();
 
-    static QString webAddress, webPort;
+    static QString webAddress;
+
+    static QString webPort;
 
 private slots:
     void on_buttonBox_accepted();
