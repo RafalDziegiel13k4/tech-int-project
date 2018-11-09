@@ -26,6 +26,8 @@ public:
 
     static QString webAnswer;
 
+    QStringList databaseStatus, databaseId, databaseName, databaseModDate;
+
 private slots:
     void on_actionExit_triggered();
 

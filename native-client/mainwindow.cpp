@@ -3,7 +3,6 @@
 
 QString MainWindow::onlineState;
 QString MainWindow::webAnswer;
-//QString MainWindow::webDatabase;
 
 bool readDatabase;
 
@@ -87,10 +86,19 @@ void MainWindow::processDatabase()
     QJsonArray jsonArray = webDatabase.array();
     readDatabase = false;
 
-    foreach (const QJsonValue &val, jsonArray)
+    foreach(const QJsonValue &jsonValue, jsonArray)
     {
-        QString docName = val.toObject().value("name").toString();
-        ui->listWidget->addItem(docName);
+        QJsonObject jsonObject = jsonValue.toObject();
+
+        databaseId.append(jsonObject["_id"].toString());
+        databaseName.append(jsonObject["name"].toString());
+        databaseStatus.append(jsonObject["status"].toString());
+        databaseModDate.append(jsonObject["Modification_date"].toString());
+    }
+
+    for(int i = 0; i < jsonArray.size(); i++)
+    {
+        ui->listWidget->addItem(databaseName.at(i));
     }
 }
 
