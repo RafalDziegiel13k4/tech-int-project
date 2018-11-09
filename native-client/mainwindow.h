@@ -7,6 +7,7 @@
 #include "aboutdialog.h"
 #include "namedialog.h"
 #include "configdialog.h"
+#include "webeditordialog.h"
 
 using namespace std;
 
@@ -61,6 +62,8 @@ private slots:
 
     void on_listWidget_clicked(const QModelIndex &index);
 
+    void on_pushButtonEdit_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -69,6 +72,8 @@ private:
     NameDialog *nameDial = new NameDialog;
 
     ConfigDialog *confDial = new ConfigDialog;
+
+    WebEditorDialog *webDial = new WebEditorDialog;
 
     QNetworkAccessManager *netManager = new QNetworkAccessManager;
 

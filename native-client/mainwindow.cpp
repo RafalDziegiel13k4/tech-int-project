@@ -64,16 +64,6 @@ void MainWindow::addDocument()
     netManager->post(netReq, params.query(QUrl::FullyEncoded).toUtf8());
 }
 
-void MainWindow::on_pushButtonDelete_clicked()
-{
-    netReq.setUrl(QUrl("http://" + confDial->webAddress + ":" + confDial->webPort + "/docs/" + databaseId.at(selectedDocRow)));
-    netManager->deleteResource(netReq);
-
-    this->removeDatabaseItem(selectedDocRow);
-
-    qDeleteAll(ui->listWidget->selectedItems());
-}
-
 void MainWindow::on_actionConfig_triggered()
 {
     confDial->show();
@@ -126,11 +116,6 @@ void MainWindow::processDatabase()
     }
 }
 
-void MainWindow::on_pushButtonView_clicked()
-{
-
-}
-
 void MainWindow::on_actionRefresh_triggered()
 {
     ui->listWidget->clear();
@@ -145,4 +130,24 @@ void MainWindow::on_listWidget_clicked(const QModelIndex &index)
 
     selectedDocRow = index.row();
     ui->lineEditDate->setText(databaseModDate.at(selectedDocRow));
+}
+
+void MainWindow::on_pushButtonView_clicked()
+{
+    webDial->show();
+}
+
+void MainWindow::on_pushButtonEdit_clicked()
+{
+    webDial->show();
+}
+
+void MainWindow::on_pushButtonDelete_clicked()
+{
+    netReq.setUrl(QUrl("http://" + confDial->webAddress + ":" + confDial->webPort + "/docs/" + databaseId.at(selectedDocRow)));
+    netManager->deleteResource(netReq);
+
+    this->removeDatabaseItem(selectedDocRow);
+
+    qDeleteAll(ui->listWidget->selectedItems());
 }

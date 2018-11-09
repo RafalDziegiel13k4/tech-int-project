@@ -2,6 +2,9 @@
 #define WEBEDITORDIALOG_H
 
 #include <QDialog>
+#include <QtWebEngine>
+#include <QWebEngineView>
+#include <QWebEnginePage>
 
 namespace Ui {
 class WebEditorDialog;
@@ -17,6 +20,8 @@ public:
 
 private:
     Ui::WebEditorDialog *ui;
+
+    QWebEngineView *webView = new QWebEngineView(this);
 };
 
 #endif // WEBEDITORDIALOG_H
