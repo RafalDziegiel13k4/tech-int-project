@@ -4,17 +4,17 @@
 QString MainWindow::onlineState;
 QString MainWindow::webAnswer;
 
-bool readDatabase;
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    netReq.setUrl(QUrl("http://" + confDial->webAddress + ":" + confDial->webPort + "/docs"));
+    netReq.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
     connect(netManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(netManagerFinished(QNetworkReply*)));
     connect(nameDial, &NameDialog::accepted, this, &MainWindow::addDocument);
+
     this->getDatabase();
 }
 
@@ -60,12 +60,17 @@ void MainWindow::addDocument()
     QUrlQuery params;
     params.addQueryItem("name", nameDial->docName);
 
-    netReq.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+    netReq.setUrl(QUrl("http://" + confDial->webAddress + ":" + confDial->webPort + "/docs"));
     netManager->post(netReq, params.query(QUrl::FullyEncoded).toUtf8());
 }
 
 void MainWindow::on_pushButtonDelete_clicked()
 {
+    netReq.setUrl(QUrl("http://" + confDial->webAddress + ":" + confDial->webPort + "/docs/" + databaseId.at(selectedDocRow)));
+    netManager->deleteResource(netReq);
+
+    this->removeDatabaseItem(selectedDocRow);
+
     qDeleteAll(ui->listWidget->selectedItems());
 }
 
@@ -77,7 +82,24 @@ void MainWindow::on_actionConfig_triggered()
 void MainWindow::getDatabase()
 {
     readDatabase = true;
+    netReq.setUrl(QUrl("http://" + confDial->webAddress + ":" + confDial->webPort + "/docs"));
     netManager->get(netReq);
+}
+
+void MainWindow::clearDatabase()
+{
+    databaseId.clear();
+    databaseName.clear();
+    databaseStatus.clear();
+    databaseModDate.clear();
+}
+
+void MainWindow::removeDatabaseItem(int index)
+{
+    databaseId.removeAt(index);
+    databaseName.removeAt(index);
+    databaseStatus.removeAt(index);
+    databaseModDate.removeAt(index);
 }
 
 void MainWindow::processDatabase()
@@ -85,6 +107,8 @@ void MainWindow::processDatabase()
     QJsonDocument webDatabase = QJsonDocument::fromJson(webAnswer.toUtf8());
     QJsonArray jsonArray = webDatabase.array();
     readDatabase = false;
+
+    this->clearDatabase();
 
     foreach(const QJsonValue &jsonValue, jsonArray)
     {
@@ -111,4 +135,10 @@ void MainWindow::on_actionRefresh_triggered()
 {
     ui->listWidget->clear();
     this->getDatabase();
+}
+
+void MainWindow::on_listWidget_clicked(const QModelIndex &index)
+{
+    selectedDocRow = index.row();
+    ui->lineEditDate->setText(databaseModDate.at(selectedDocRow));
 }

@@ -22,6 +22,10 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    bool readDatabase;
+
+    int selectedDocRow;
+
     static QString onlineState;
 
     static QString webAnswer;
@@ -45,11 +49,17 @@ private slots:
 
     void getDatabase();
 
+    void clearDatabase();
+
+    void removeDatabaseItem(int index);
+
     void processDatabase();
 
     void addDocument();
 
     void on_actionRefresh_triggered();
+
+    void on_listWidget_clicked(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;
