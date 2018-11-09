@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui network webengine webenginewidgets
 CONFIG   += c++11
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -17,14 +17,17 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     aboutdialog.cpp \
     namedialog.cpp \
-    configdialog.cpp
+    configdialog.cpp \
+    webeditordialog.cpp
 
 HEADERS  += mainwindow.h \
     aboutdialog.h \
     namedialog.h \
-    configdialog.h
+    configdialog.h \
+    webeditordialog.h
 
 FORMS    += mainwindow.ui \
     aboutdialog.ui \
     namedialog.ui \
-    configdialog.ui
+    configdialog.ui \
+    webeditordialog.ui
