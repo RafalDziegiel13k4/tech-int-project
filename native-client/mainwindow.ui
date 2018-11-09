@@ -147,6 +147,9 @@
     </widget>
    </widget>
    <widget class="QPushButton" name="pushButtonView">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>400</x>
@@ -163,6 +166,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="pushButtonEdit">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>400</x>
@@ -179,6 +185,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="pushButtonDelete">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>400</x>

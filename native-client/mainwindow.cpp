@@ -139,6 +139,10 @@ void MainWindow::on_actionRefresh_triggered()
 
 void MainWindow::on_listWidget_clicked(const QModelIndex &index)
 {
+    ui->pushButtonView->setEnabled(true);
+    ui->pushButtonEdit->setEnabled(true);
+    ui->pushButtonDelete->setEnabled(true);
+
     selectedDocRow = index.row();
     ui->lineEditDate->setText(databaseModDate.at(selectedDocRow));
 }
