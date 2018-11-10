@@ -8,7 +8,12 @@
 <qresource prefix="/css">
     <file alias="froala_editor.css">../web-editor/css/froala_editor.css</file>
     <file alias="froala_style.css">../web-editor/css/froala_style.css</file>
-    <file alias="fonts/font-awesome.css">../web-editor/css/fonts/font-awesome.css</file>
+    <file alias="fonts/font-awesome-qt.css">../web-editor/css/fonts/font-awesome-qt.css</file>
+    <file alias="fonts/fontawesome-webfont.eot">../web-editor/css/fonts/fontawesome-webfont.eot</file>
+    <file alias="fonts/fontawesome-webfont.svg">../web-editor/css/fonts/fontawesome-webfont.svg</file>
+    <file alias="fonts/fontawesome-webfont.ttf">../web-editor/css/fonts/fontawesome-webfont.ttf</file>
+    <file alias="fonts/fontawesome-webfont.woff">../web-editor/css/fonts/fontawesome-webfont.woff</file>
+    <file alias="fonts/fontawesome-webfont.woff2">../web-editor/css/fonts/fontawesome-webfont.woff2</file>
     <file alias="plugins/code_view.css">../web-editor/css/plugins/code_view.css</file>
     <file alias="plugins/draggable.css">../web-editor/css/plugins/draggable.css</file>
     <file alias="plugins/colors.css">../web-editor/css/plugins/colors.css</file>
