@@ -31,3 +31,6 @@ FORMS    += mainwindow.ui \
     namedialog.ui \
     configdialog.ui \
     webeditordialog.ui
+
+RESOURCES += \
+    resources.qrc

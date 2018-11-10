@@ -8,7 +8,7 @@ WebEditorDialog::WebEditorDialog(QWidget *parent) :
     ui->setupUi(this);
     webView->setFixedWidth(1280);
     webView->setFixedHeight(674);
-    webView->load(QUrl("http://www.qt.io/"));
+    webView->load(QUrl("qrc:/web_editor/web-editor.html"));
 }
 
 WebEditorDialog::~WebEditorDialog()

@@ -1,1 +1,8 @@
-<RCC/>
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/web_editor">
+    <file alias="web-editor.html">../web-editor/web-editor.html</file>
+</qresource>
+<qresource prefix="/web_viewer">
+    <file alias="web-viewer.html">../web-editor/web-viewer.html</file>
+</qresource>
+</RCC>
