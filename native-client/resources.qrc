@@ -1,8 +1,51 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource prefix="/web_editor">
-    <file alias="web-editor.html">../web-editor/web-editor.html</file>
+    <file alias="web-editor-qt.html">../web-editor/web-editor-qt.html</file>
 </qresource>
 <qresource prefix="/web_viewer">
-    <file alias="web-viewer.html">../web-editor/web-viewer.html</file>
+    <file alias="web-viewer-qt.html">../web-editor/web-viewer-qt.html</file>
+</qresource>
+<qresource prefix="/css">
+    <file alias="froala_editor.css">../web-editor/css/froala_editor.css</file>
+    <file alias="froala_style.css">../web-editor/css/froala_style.css</file>
+    <file alias="fonts/font-awesome.css">../web-editor/css/fonts/font-awesome.css</file>
+    <file alias="plugins/code_view.css">../web-editor/css/plugins/code_view.css</file>
+    <file alias="plugins/draggable.css">../web-editor/css/plugins/draggable.css</file>
+    <file alias="plugins/colors.css">../web-editor/css/plugins/colors.css</file>
+    <file alias="plugins/emoticons.css">../web-editor/css/plugins/emoticons.css</file>
+    <file alias="plugins/line_breaker.css">../web-editor/css/plugins/line_breaker.css</file>
+    <file alias="plugins/table.css">../web-editor/css/plugins/table.css</file>
+    <file alias="plugins/char_counter.css">../web-editor/css/plugins/char_counter.css</file>
+    <file alias="plugins/special_characters.css">../web-editor/css/plugins/special_characters.css</file>
+    <file alias="plugins/codemirror.min.css">../web-editor/css/plugins/codemirror.min.css</file>
+</qresource>
+<qresource prefix="/js">
+    <file alias="webplugins/jquery.min.js">../web-editor/js/webplugins/jquery.min.js</file>
+    <file alias="webplugins/codemirror.min.js">../web-editor/js/webplugins/codemirror.min.js</file>
+    <file alias="webplugins/xml.min.js">../web-editor/js/webplugins/xml.min.js</file>
+    <file alias="froala_editor.min.js">../web-editor/js/froala_editor.min.js</file>
+    <file alias="plugins/align.min.js">../web-editor/js/plugins/align.min.js</file>
+    <file alias="plugins/char_counter.min.js">../web-editor/js/plugins/char_counter.min.js</file>
+    <file alias="plugins/code_beautifier.min.js">../web-editor/js/plugins/code_beautifier.min.js</file>
+    <file alias="plugins/code_view.min.js">../web-editor/js/plugins/code_view.min.js</file>
+    <file alias="plugins/colors.min.js">../web-editor/js/plugins/colors.min.js</file>
+    <file alias="plugins/draggable.min.js">../web-editor/js/plugins/draggable.min.js</file>
+    <file alias="plugins/emoticons.min.js">../web-editor/js/plugins/emoticons.min.js</file>
+    <file alias="plugins/entities.min.js">../web-editor/js/plugins/entities.min.js</file>
+    <file alias="plugins/font_size.min.js">../web-editor/js/plugins/font_size.min.js</file>
+    <file alias="plugins/font_family.min.js">../web-editor/js/plugins/font_family.min.js</file>
+    <file alias="plugins/line_breaker.min.js">../web-editor/js/plugins/line_breaker.min.js</file>
+    <file alias="plugins/link.min.js">../web-editor/js/plugins/link.min.js</file>
+    <file alias="plugins/lists.min.js">../web-editor/js/plugins/lists.min.js</file>
+    <file alias="plugins/paragraph_format.min.js">../web-editor/js/plugins/paragraph_format.min.js</file>
+    <file alias="plugins/paragraph_style.min.js">../web-editor/js/plugins/paragraph_style.min.js</file>
+    <file alias="plugins/quote.min.js">../web-editor/js/plugins/quote.min.js</file>
+    <file alias="plugins/table.min.js">../web-editor/js/plugins/table.min.js</file>
+    <file alias="plugins/save.min.js">../web-editor/js/plugins/save.min.js</file>
+    <file alias="plugins/url.min.js">../web-editor/js/plugins/url.min.js</file>
+    <file alias="plugins/print.min.js">../web-editor/js/plugins/print.min.js</file>
+    <file alias="plugins/special_characters.min.js">../web-editor/js/plugins/special_characters.min.js</file>
+    <file alias="plugins/word_paste.min.js">../web-editor/js/plugins/word_paste.min.js</file>
+    <file alias="languages/pl.js">../web-editor/js/languages/pl.js</file>
 </qresource>
 </RCC>
