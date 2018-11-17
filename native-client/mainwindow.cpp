@@ -67,7 +67,7 @@ void MainWindow::addDocument()
 
 void MainWindow::saveDocument()
 {
-    cout << "SAVED" << endl;
+
 }
 
 void MainWindow::on_actionConfig_triggered()
