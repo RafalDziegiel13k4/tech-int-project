@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(netManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(netManagerFinished(QNetworkReply*)));
     connect(nameDial, &NameDialog::accepted, this, &MainWindow::addDocument);
+    connect(webDial, &WebEditorDialog::accepted, this, &MainWindow::saveDocument);
 
     this->getDatabase();
 }
@@ -62,6 +63,11 @@ void MainWindow::addDocument()
 
     netReq.setUrl(QUrl("http://" + confDial->webAddress + ":" + confDial->webPort + "/docs"));
     netManager->post(netReq, params.query(QUrl::FullyEncoded).toUtf8());
+}
+
+void MainWindow::saveDocument()
+{
+    cout << "SAVED" << endl;
 }
 
 void MainWindow::on_actionConfig_triggered()
@@ -122,14 +128,16 @@ void MainWindow::on_actionRefresh_triggered()
     this->getDatabase();
 }
 
-void MainWindow::on_listWidget_clicked(const QModelIndex &index)
+void MainWindow::enableButtons(bool enabled)
 {
-    ui->pushButtonView->setEnabled(true);
-    ui->pushButtonEdit->setEnabled(true);
-    ui->pushButtonDelete->setEnabled(true);
+    ui->pushButtonView->setEnabled(enabled);
+    ui->pushButtonEdit->setEnabled(enabled);
+    ui->pushButtonDelete->setEnabled(enabled);
+}
 
-    selectedDocRow = index.row();
-    ui->lineEditDate->setText(databaseModDate.at(selectedDocRow));
+void MainWindow::on_listWidget_clicked()
+{
+    this->enableButtons(true);
 }
 
 void MainWindow::on_pushButtonView_clicked()
@@ -150,4 +158,17 @@ void MainWindow::on_pushButtonDelete_clicked()
     this->removeDatabaseItem(selectedDocRow);
 
     qDeleteAll(ui->listWidget->selectedItems());
+}
+
+void MainWindow::on_listWidget_currentRowChanged(int currentRow)
+{
+    if (currentRow >= 0)
+    {
+        selectedDocRow = currentRow;
+        ui->lineEditDate->setText(databaseModDate.at(selectedDocRow));
+    }
+    else
+    {
+        this->enableButtons(false);
+    }
 }

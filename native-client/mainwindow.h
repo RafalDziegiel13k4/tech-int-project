@@ -58,11 +58,17 @@ private slots:
 
     void addDocument();
 
+    void saveDocument();
+
+    void enableButtons(bool enabled);
+
     void on_actionRefresh_triggered();
 
-    void on_listWidget_clicked(const QModelIndex &index);
+    void on_listWidget_clicked();
 
     void on_pushButtonEdit_clicked();
+
+    void on_listWidget_currentRowChanged(int currentRow);
 
 private:
     Ui::MainWindow *ui;
