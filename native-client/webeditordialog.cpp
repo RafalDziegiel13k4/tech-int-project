@@ -5,12 +5,10 @@ WebEditorDialog::WebEditorDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::WebEditorDialog)
 {
-    QFile jQuerySrc;
     jQuerySrc.setFileName(":/js/webplugins/jquery.min.js");
     jQuerySrc.open(QIODevice::ReadOnly);
     jQuery = jQuerySrc.readAll();
     jQuery.append("\nvar qt = { 'jQuery': jQuery.noConflict(true) };");
-    cout << jQuery.toStdString() << endl;
     jQuerySrc.close();
 
     ui->setupUi(this);

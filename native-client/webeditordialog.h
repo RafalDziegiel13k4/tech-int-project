@@ -29,13 +29,13 @@ private slots:
 private:
     Ui::WebEditorDialog *ui;
 
+    QFile jQuerySrc;
+
     QString jQuery;
 
     QString jsEditorContent = "qt.jQuery('div.fr-view').html()";
 
     QWebEngineView *webView = new QWebEngineView(this);
-
-    QWebEnginePage *webPage = new QWebEnginePage(this);
 };
 
 #endif // WEBEDITORDIALOG_H
