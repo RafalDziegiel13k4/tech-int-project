@@ -28,11 +28,13 @@ exports.read_a_doc = function(req, res) {
 };
 
 exports.update_a_doc = function(req, res) {
-  Docs.findOneAndUpdate({_id: req.params.docId}, req.body, {new: true}, function(err, doc) {
+  var docBody = req.body;
+  var currentTime = new Date();
+  docBody.Modification_date = currentTime.toLocaleDateString("pl-PL", options);
+
+  Docs.findOneAndUpdate({_id: req.params.docId}, docBody, {new: true}, function(err, doc) {
     if (err)
       res.send(err);
-    var currentTime = new Date();
-    doc.Modification_date = currentTime.toLocaleDateString("pl-PL", options);
     res.json(doc);
   });
 };
