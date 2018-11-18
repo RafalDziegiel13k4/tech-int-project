@@ -18,19 +18,22 @@ SOURCES += main.cpp\
     aboutdialog.cpp \
     namedialog.cpp \
     configdialog.cpp \
-    webeditordialog.cpp
+    webeditordialog.cpp \
+    webviewerdialog.cpp
 
 HEADERS  += mainwindow.h \
     aboutdialog.h \
     namedialog.h \
     configdialog.h \
-    webeditordialog.h
+    webeditordialog.h \
+    webviewerdialog.h
 
 FORMS    += mainwindow.ui \
     aboutdialog.ui \
     namedialog.ui \
     configdialog.ui \
-    webeditordialog.ui
+    webeditordialog.ui \
+    webviewerdialog.ui
 
 RESOURCES += \
     resources.qrc
