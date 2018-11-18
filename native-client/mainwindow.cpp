@@ -96,6 +96,7 @@ void MainWindow::clearDatabase()
     databaseId.clear();
     databaseName.clear();
     databaseStatus.clear();
+    databaseUser.clear();
     databaseModDate.clear();
 }
 
@@ -104,6 +105,7 @@ void MainWindow::removeDatabaseItem(int index)
     databaseId.removeAt(index);
     databaseName.removeAt(index);
     databaseStatus.removeAt(index);
+    databaseUser.removeAt(index);
     databaseModDate.removeAt(index);
 }
 
@@ -122,18 +124,22 @@ void MainWindow::processDatabase()
         databaseId.append(jsonObject["_id"].toString());
         databaseName.append(jsonObject["name"].toString());
         databaseStatus.append(jsonObject["status"].toString());
-        databaseModDate.append(jsonObject["Modification_date"].toString());
+        databaseUser.append(jsonObject["user"].toString());
+        databaseModDate.append(jsonObject["modification_date"].toString());
     }
+
+    ui->listWidget->clear();
 
     for(int i = 0; i < jsonArray.size(); i++)
     {
         ui->listWidget->addItem(databaseName.at(i));
     }
+
+    ui->listWidget->setCurrentRow(-1);
 }
 
 void MainWindow::on_actionRefresh_triggered()
 {
-    ui->listWidget->clear();
     this->getDatabase();
 }
 
@@ -142,11 +148,6 @@ void MainWindow::enableButtons(bool enabled)
     ui->pushButtonView->setEnabled(enabled);
     ui->pushButtonEdit->setEnabled(enabled);
     ui->pushButtonDelete->setEnabled(enabled);
-}
-
-void MainWindow::on_listWidget_clicked()
-{
-    this->enableButtons(true);
 }
 
 void MainWindow::on_pushButtonView_clicked()
@@ -171,8 +172,8 @@ void MainWindow::on_pushButtonDelete_clicked()
     netManager->deleteResource(netReq);
 
     this->removeDatabaseItem(selectedDocRow);
-
-    qDeleteAll(ui->listWidget->selectedItems());
+    ui->listWidget->setCurrentRow(-1);
+    ui->listWidget->takeItem(selectedDocRow);
 }
 
 void MainWindow::on_listWidget_currentRowChanged(int currentRow)
@@ -180,10 +181,15 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
     if(currentRow >= 0)
     {
         selectedDocRow = currentRow;
+        ui->lineEditAuthor->setText(databaseUser.at(selectedDocRow));
         ui->lineEditDate->setText(databaseModDate.at(selectedDocRow));
+
+        this->enableButtons(true);
     }
     else
     {
+        ui->lineEditAuthor->clear();
+        ui->lineEditDate->clear();
         this->enableButtons(false);
     }
 }

@@ -26,15 +26,15 @@ public:
 
     QNetworkRequest netReq;
 
-    bool readDatabase;
+    bool readDatabase, deletedRow;
 
-    int selectedDocRow;
+    int selectedDocRow, listSize;
 
     static QString onlineState;
 
     static QString webAnswer;
 
-    QStringList databaseStatus, databaseId, databaseName, databaseModDate;
+    QStringList databaseStatus, databaseId, databaseName, databaseUser, databaseModDate;
 
 private slots:
     void on_actionExit_triggered();
@@ -68,8 +68,6 @@ private slots:
     void enableButtons(bool enabled);
 
     void on_actionRefresh_triggered();
-
-    void on_listWidget_clicked();
 
     void on_pushButtonEdit_clicked();
 
