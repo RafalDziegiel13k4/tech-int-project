@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 Docs = mongoose.model('Docs');
+const options = { day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
 
 exports.list_all_docs = function(req, res) {
   Docs.find({}, function(err, doc) {
@@ -30,6 +31,8 @@ exports.update_a_doc = function(req, res) {
   Docs.findOneAndUpdate({_id: req.params.docId}, req.body, {new: true}, function(err, doc) {
     if (err)
       res.send(err);
+    var currentTime = new Date();
+    doc.Modification_date = currentTime.toLocaleDateString("pl-PL", options);
     res.json(doc);
   });
 };
