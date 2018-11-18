@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 var docsSchema = new Schema({
   name: {
     type: String,
-    required: 'Enter name'
+    required: 'Doc name'
   },
-  Modification_date: {
+  modification_date: {
     type: String,
     default: function() {
       var options = { day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
@@ -18,6 +18,10 @@ var docsSchema = new Schema({
       type: String,
       enum: ['free', 'used'],
       default: ['free']
+  },
+  user: {
+    type: String,
+    default: 'Anonymous'
   }
 });
 
