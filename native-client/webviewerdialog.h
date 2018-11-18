@@ -2,6 +2,12 @@
 #define WEBVIEWERDIALOG_H
 
 #include <QDialog>
+#include <QtWebEngine>
+#include <QWebEngineView>
+#include <QWebEnginePage>
+#include <iostream>
+
+using namespace std;
 
 namespace Ui {
 class WebViewerDialog;
@@ -15,8 +21,21 @@ public:
     explicit WebViewerDialog(QWidget *parent = 0);
     ~WebViewerDialog();
 
+public slots:
+    void prepareViewer();
+
 private:
     Ui::WebViewerDialog *ui;
+
+    QFile jQuerySrc;
+
+    QString jQuery;
+
+    QString jsRemoveToolbar = "qt.jQuery('div.fr-toolbar').remove()";
+
+    QString jsDisableEditing = "qt.jQuery('div.fr-view').attr('contenteditable','false')";
+
+    QWebEngineView *webView = new QWebEngineView(this);
 };
 
 #endif // WEBVIEWERDIALOG_H
