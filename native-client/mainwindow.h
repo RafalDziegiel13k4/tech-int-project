@@ -8,6 +8,7 @@
 #include "namedialog.h"
 #include "configdialog.h"
 #include "webeditordialog.h"
+#include "webviewerdialog.h"
 
 using namespace std;
 
@@ -22,6 +23,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    QNetworkRequest netReq;
 
     bool readDatabase;
 
@@ -60,6 +63,8 @@ private slots:
 
     void saveDocument();
 
+    void editingFinished();
+
     void enableButtons(bool enabled);
 
     void on_actionRefresh_triggered();
@@ -79,11 +84,11 @@ private:
 
     ConfigDialog *confDial = new ConfigDialog;
 
-    WebEditorDialog *webDial = new WebEditorDialog;
+    WebEditorDialog *webEditDial = new WebEditorDialog;
+
+    WebViewerDialog *webViewDial = new WebViewerDialog;
 
     QNetworkAccessManager *netManager = new QNetworkAccessManager;
-
-    QNetworkRequest netReq;
 
     QJsonDocument *jsonDoc = new QJsonDocument;
 };

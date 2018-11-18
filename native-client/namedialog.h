@@ -20,7 +20,6 @@ public:
     static QString docName;
 
 private slots:
-
     void update();
 
 private:

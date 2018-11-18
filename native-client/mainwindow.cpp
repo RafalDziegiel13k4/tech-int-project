@@ -14,7 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(netManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(netManagerFinished(QNetworkReply*)));
     connect(nameDial, &NameDialog::accepted, this, &MainWindow::addDocument);
-    connect(webDial, &WebEditorDialog::accepted, this, &MainWindow::saveDocument);
+    connect(webEditDial, &WebEditorDialog::accepted, this, &MainWindow::saveDocument);
+    connect(webEditDial, &WebEditorDialog::rejected, this, &MainWindow::editingFinished);
 
     this->getDatabase();
 }
@@ -67,7 +68,15 @@ void MainWindow::addDocument()
 
 void MainWindow::saveDocument()
 {
+    //save doc contents here
+    this->editingFinished();
+}
 
+void MainWindow::editingFinished()
+{
+    QUrlQuery params;
+    params.addQueryItem("status", "free");
+    netManager->put(netReq, params.query(QUrl::FullyEncoded).toUtf8());
 }
 
 void MainWindow::on_actionConfig_triggered()
@@ -142,12 +151,18 @@ void MainWindow::on_listWidget_clicked()
 
 void MainWindow::on_pushButtonView_clicked()
 {
-    webDial->show();
+    webViewDial->prepareViewer();
+    webViewDial->show();
 }
 
 void MainWindow::on_pushButtonEdit_clicked()
 {
-    webDial->show();
+    QUrlQuery params;
+    params.addQueryItem("status", "used");
+
+    netReq.setUrl(QUrl("http://" + confDial->webAddress + ":" + confDial->webPort + "/docs/" + databaseId.at(selectedDocRow)));
+    netManager->put(netReq, params.query(QUrl::FullyEncoded).toUtf8());
+    webEditDial->show();
 }
 
 void MainWindow::on_pushButtonDelete_clicked()
@@ -162,7 +177,7 @@ void MainWindow::on_pushButtonDelete_clicked()
 
 void MainWindow::on_listWidget_currentRowChanged(int currentRow)
 {
-    if (currentRow >= 0)
+    if(currentRow >= 0)
     {
         selectedDocRow = currentRow;
         ui->lineEditDate->setText(databaseModDate.at(selectedDocRow));
