@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Client Text Editor</string>
+   <string>Client Text Viewer</string>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">

@@ -93,7 +93,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Author</string>
+      <string>Recent User</string>
      </property>
     </widget>
     <widget class="QLabel" name="labelDate">

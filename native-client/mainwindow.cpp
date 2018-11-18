@@ -61,6 +61,7 @@ void MainWindow::addDocument()
 {
     QUrlQuery params;
     params.addQueryItem("name", nameDial->docName);
+    params.addQueryItem("user", confDial->userName);
 
     netReq.setUrl(QUrl("http://" + confDial->webAddress + ":" + confDial->webPort + "/docs"));
     netManager->post(netReq, params.query(QUrl::FullyEncoded).toUtf8());
@@ -76,6 +77,7 @@ void MainWindow::editingFinished()
 {
     QUrlQuery params;
     params.addQueryItem("status", "free");
+    params.addQueryItem("user", confDial->userName);
     netManager->put(netReq, params.query(QUrl::FullyEncoded).toUtf8());
 }
 

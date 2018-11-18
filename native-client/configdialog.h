@@ -17,6 +17,8 @@ public:
     explicit ConfigDialog(QWidget *parent = 0);
     ~ConfigDialog();
 
+    static QString userName;
+
     static QString webAddress;
 
     static QString webPort;

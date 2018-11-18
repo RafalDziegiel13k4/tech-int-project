@@ -1,6 +1,7 @@
 #include "configdialog.h"
 #include "ui_configdialog.h"
 
+QString ConfigDialog::userName;
 QString ConfigDialog::webAddress;
 QString ConfigDialog::webPort;
 
@@ -19,6 +20,7 @@ ConfigDialog::~ConfigDialog()
 
 void ConfigDialog::on_buttonBox_accepted()
 {
+    userName = ui->lineEditUser->text();
     webAddress = ui->lineEditAddress->text();
     webPort = QString::number(ui->spinBoxPort->value());
 }
