@@ -30,7 +30,7 @@ exports.read_a_doc = function(req, res) {
 exports.update_a_doc = function(req, res) {
   var docBody = req.body;
   var currentTime = new Date();
-  docBody.Modification_date = currentTime.toLocaleDateString("pl-PL", options);
+  docBody.modification_date = currentTime.toLocaleDateString("pl-PL", options);
 
   Docs.findOneAndUpdate({_id: req.params.docId}, docBody, {new: true}, function(err, doc) {
     if (err)
