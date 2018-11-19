@@ -2,9 +2,6 @@
 <qresource prefix="/web_editor">
     <file alias="web-editor-qt.html">../web-editor/web-editor-qt.html</file>
 </qresource>
-<qresource prefix="/web_viewer">
-    <file alias="web-viewer-qt.html">../web-editor/web-viewer-qt.html</file>
-</qresource>
 <qresource prefix="/css">
     <file alias="froala_editor.css">../web-editor/css/froala_editor.css</file>
     <file alias="froala_style.css">../web-editor/css/froala_style.css</file>
