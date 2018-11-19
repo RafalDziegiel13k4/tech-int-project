@@ -6,8 +6,7 @@ Docs = mongoose.model('Docs');
 
 exports.list_all_docs = function(req, res) {
   Docs.find({}, function(err, doc) {
-    if (err)
-      res.send(err);
+    if (err) res.send(err);
     res.json(doc);
   });
 };
@@ -41,8 +40,11 @@ exports.update_a_doc = function(req, res) {
   docBody.modification_date = currentTime.toLocaleDateString("pl-PL", options);
 
   Docs.findOneAndUpdate({_id: req.params.docId}, docBody, {new: true}, function(err, doc) {
-    if (err)
-      res.send(err);
+    if (err) res.send(err);
+    else {
+      var docContent = docBody.content;
+      if (docContent) fs.writeFile(writePath + req.params.docId, docContent);
+    }
     res.json(doc);
   });
 };
