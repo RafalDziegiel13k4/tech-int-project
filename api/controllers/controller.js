@@ -36,13 +36,13 @@ exports.read_a_doc = function(req, res) {
 
 exports.update_a_doc = function(req, res) {
   var docBody = req.body;
+  var docContent = docBody.content;
   var currentTime = new Date();
-  docBody.modification_date = currentTime.toLocaleDateString("pl-PL", options);
+  if (docContent) docBody.modification_date = currentTime.toLocaleDateString("pl-PL", options);
 
   Docs.findOneAndUpdate({_id: req.params.docId}, docBody, {new: true}, function(err, doc) {
     if (err) res.send(err);
     else {
-      var docContent = docBody.content;
       if (docContent) fs.writeFile(writePath + req.params.docId, docContent);
     }
     res.json(doc);
