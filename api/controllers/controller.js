@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
-Docs = mongoose.model('Docs');
 const options = { day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+var fs = require('fs');
+const writePath = "/tmp/";
+Docs = mongoose.model('Docs');
 
 exports.list_all_docs = function(req, res) {
   Docs.find({}, function(err, doc) {
@@ -12,18 +14,24 @@ exports.list_all_docs = function(req, res) {
 
 exports.create_a_doc = function(req, res) {
   var new_doc = new Docs(req.body);
+  var docId = new_doc._id;
+
   new_doc.save(function(err, doc) {
-    if (err)
-      res.send(err);
+    if (err) res.send(err);
+    else fs.writeFile(writePath + docId, "");
     res.json(doc);
   });
 };
 
 exports.read_a_doc = function(req, res) {
   Docs.findById(req.params.docId, function(err, doc) {
-    if (err)
-      res.send(err);
-    res.json(doc);
+    if (err) res.send(err);
+    else {
+      fs.readFile(writePath + req.params.docId, function(err, data) {
+        res.send(data);
+        res.end();
+      });
+    }
   });
 };
 
@@ -44,6 +52,7 @@ exports.delete_a_doc = function(req, res) {
     _id: req.params.docId
   }, function(err, doc) {
     if (err) res.send(err);
+    else fs.unlink(writePath + req.params.docId);
     res.json({ message: 'Document successfully deleted' });
   });
 };
