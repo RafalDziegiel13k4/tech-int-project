@@ -40,15 +40,14 @@ void WebViewerDialog::prepareViewer(QString webText)
     webView->page()->runJavaScript(jsRemoveToolbar);
     webView->page()->runJavaScript(jsDisableEditing);
     this->setPlaceholder("");
+    webView->setEnabled(false);
 
     if(webText.isEmpty())
     {
         this->setContent("");
-        webView->setEnabled(false);
         return;
     }
 
     webText = webText.replace("\n","");
     this->setContent(webText);
-    webView->setEnabled(true);
 }

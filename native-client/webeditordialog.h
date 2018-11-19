@@ -21,6 +21,11 @@ public:
     explicit WebEditorDialog(QWidget *parent = 0);
     ~WebEditorDialog();
 
+    static QString contentForSave;
+
+signals:
+    void editingFinished();
+
 public slots:
     void on_buttonBox_accepted();
 

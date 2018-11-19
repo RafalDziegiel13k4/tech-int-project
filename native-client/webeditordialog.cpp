@@ -1,6 +1,8 @@
 #include "webeditordialog.h"
 #include "ui_webeditordialog.h"
 
+QString WebEditorDialog::contentForSave;
+
 WebEditorDialog::WebEditorDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::WebEditorDialog)
@@ -45,7 +47,8 @@ void WebEditorDialog::prepareEditor(QString webText)
 
 void WebEditorDialog::showResults(QString text)
 {
-    cout << text.toStdString() << endl;
+    contentForSave = text;
+    this->editingFinished();
 }
 
 void WebEditorDialog::on_buttonBox_accepted()

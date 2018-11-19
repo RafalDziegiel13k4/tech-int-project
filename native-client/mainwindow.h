@@ -69,7 +69,7 @@ private slots:
 
     void openWebEditor();
 
-    void editingFinished();
+    void setDocFree();
 
     void enableButtons(bool enabled);
 

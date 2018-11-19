@@ -16,8 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(netManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(netManagerFinished(QNetworkReply*)));
     connect(nameDial, &NameDialog::accepted, this, &MainWindow::addDocument);
-    connect(webEditDial, &WebEditorDialog::accepted, this, &MainWindow::saveDocument);
-    connect(webEditDial, &WebEditorDialog::rejected, this, &MainWindow::editingFinished);
+    connect(webEditDial, &WebEditorDialog::editingFinished, this, &MainWindow::saveDocument);
+    connect(webEditDial, &WebEditorDialog::rejected, this, &MainWindow::setDocFree);
 
     this->getDatabase();
 }
@@ -96,11 +96,14 @@ void MainWindow::addDocument()
 
 void MainWindow::saveDocument()
 {
-    //save doc contents here
-    this->editingFinished();
+    QUrlQuery params;
+    params.addQueryItem("status", "free");
+    params.addQueryItem("user", confDial->userName);
+    params.addQueryItem("content", webEditDial->contentForSave);
+    netManager->put(netReq, params.query(QUrl::FullyEncoded).toUtf8());
 }
 
-void MainWindow::editingFinished()
+void MainWindow::setDocFree()
 {
     QUrlQuery params;
     params.addQueryItem("status", "free");
