@@ -28,4 +28,5 @@ void WebViewerDialog::prepareViewer()
     webView->page()->runJavaScript(jsRemoveToolbar);
     webView->page()->runJavaScript(jsDisableEditing);
     webView->page()->runJavaScript(jsSetPlaceholder);
+    webView->setEnabled(false);
 }
