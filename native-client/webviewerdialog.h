@@ -35,6 +35,8 @@ private:
 
     QString jsDisableEditing = "qt.jQuery('div.fr-view').attr('contenteditable','false')";
 
+    QString jsSetPlaceholder = "qt.jQuery('span.fr-placeholder').html('Empty Doc')";
+
     QWebEngineView *webView = new QWebEngineView(this);
 };
 
