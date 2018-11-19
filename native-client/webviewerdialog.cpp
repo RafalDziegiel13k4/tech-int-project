@@ -22,11 +22,33 @@ WebViewerDialog::~WebViewerDialog()
     delete ui;
 }
 
-void WebViewerDialog::prepareViewer()
+void WebViewerDialog::setPlaceholder(QString tempText)
+{
+    QString jsSetPlaceholder = QString("qt.jQuery('span.fr-placeholder').html('%1')").arg(tempText);
+    webView->page()->runJavaScript(jsSetPlaceholder);
+}
+
+void WebViewerDialog::setContent(QString docText)
+{
+    QString jsSetContents = QString("qt.jQuery('div.fr-view').html('%1')").arg(docText);
+    webView->page()->runJavaScript(jsSetContents);
+}
+
+void WebViewerDialog::prepareViewer(QString webText)
 {
     webView->page()->runJavaScript(jQuery);
     webView->page()->runJavaScript(jsRemoveToolbar);
     webView->page()->runJavaScript(jsDisableEditing);
-    webView->page()->runJavaScript(jsSetPlaceholder);
-    webView->setEnabled(false);
+    this->setPlaceholder("");
+
+    if(webText.isEmpty())
+    {
+        this->setContent("");
+        webView->setEnabled(false);
+        return;
+    }
+
+    webText = webText.replace("\n","");
+    this->setContent(webText);
+    webView->setEnabled(true);
 }

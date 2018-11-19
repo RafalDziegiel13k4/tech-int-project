@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    showViewer = false;
     ui->setupUi(this);
 
     netReq.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
@@ -42,6 +43,14 @@ void MainWindow::netManagerFinished(QNetworkReply *netReply)
     webAnswer = netReply->readAll();
 
     if(readDatabase) this->processDatabase();
+    if(showViewer) this->openWebViewer();
+}
+
+void MainWindow::openWebViewer()
+{
+    webViewDial->prepareViewer(webAnswer);
+    webViewDial->show();
+    showViewer = false;
 }
 
 void MainWindow::on_actionExit_triggered()
@@ -156,8 +165,9 @@ void MainWindow::enableButtons(bool enabled)
 
 void MainWindow::on_pushButtonView_clicked()
 {
-    webViewDial->prepareViewer();
-    webViewDial->show();
+    showViewer = true;
+    netReq.setUrl(QUrl("http://" + confDial->webAddress + ":" + confDial->webPort + "/docs/" + databaseId.at(selectedDocRow)));
+    netManager->get(netReq);
 }
 
 void MainWindow::on_pushButtonEdit_clicked()

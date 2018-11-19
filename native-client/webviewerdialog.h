@@ -22,7 +22,11 @@ public:
     ~WebViewerDialog();
 
 public slots:
-    void prepareViewer();
+    void prepareViewer(QString webText);
+
+    void setPlaceholder(QString tempText);
+
+    void setContent(QString docText);
 
 private:
     Ui::WebViewerDialog *ui;
@@ -34,8 +38,6 @@ private:
     QString jsRemoveToolbar = "qt.jQuery('div.fr-toolbar').remove()";
 
     QString jsDisableEditing = "qt.jQuery('div.fr-view').attr('contenteditable','false')";
-
-    QString jsSetPlaceholder = "qt.jQuery('span.fr-placeholder').html('Empty Doc')";
 
     QWebEngineView *webView = new QWebEngineView(this);
 };

@@ -26,7 +26,9 @@ public:
 
     QNetworkRequest netReq;
 
-    bool readDatabase, deletedRow;
+    QByteArray webTextData;
+
+    bool readDatabase, downloadData, showViewer;
 
     int selectedDocRow, listSize;
 
@@ -62,6 +64,8 @@ private slots:
     void addDocument();
 
     void saveDocument();
+
+    void openWebViewer();
 
     void editingFinished();
 
