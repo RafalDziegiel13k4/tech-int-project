@@ -31,12 +31,14 @@ void MainWindow::netManagerFinished(QNetworkReply *netReply)
     {
         webAnswer = "";
         onlineState = "Offline";
-        ui->statusBar->showMessage("Status: " + onlineState);
+        ui->labelStatus->setStyleSheet("color: red;");
+        ui->labelStatus->setText(onlineState);
         return;
     }
 
     onlineState = "Online";
-    ui->statusBar->showMessage("Status: " + onlineState);
+    ui->labelStatus->setStyleSheet("color: green;");
+    ui->labelStatus->setText(onlineState);
     webAnswer = netReply->readAll();
 
     if(readDatabase) this->processDatabase();
