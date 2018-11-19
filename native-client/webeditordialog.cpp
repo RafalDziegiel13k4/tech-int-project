@@ -22,6 +22,27 @@ WebEditorDialog::~WebEditorDialog()
     delete ui;
 }
 
+void WebEditorDialog::setPlaceholder(QString tempText)
+{
+    QString jsSetPlaceholder = QString("qt.jQuery('span.fr-placeholder').html('%1')").arg(tempText);
+    webView->page()->runJavaScript(jsSetPlaceholder);
+}
+
+void WebEditorDialog::setContent(QString docText)
+{
+    QString jsSetContents = QString("qt.jQuery('div.fr-view').html('%1')").arg(docText);
+    webView->page()->runJavaScript(jsSetContents);
+}
+
+void WebEditorDialog::prepareEditor(QString webText)
+{
+    webView->page()->runJavaScript(jQuery);
+    this->setPlaceholder("");
+
+    webText = webText.replace("\n","");
+    this->setContent(webText);
+}
+
 void WebEditorDialog::showResults(QString text)
 {
     cout << text.toStdString() << endl;

@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     showViewer = false;
+    showEditor = false;
     ui->setupUi(this);
 
     netReq.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
@@ -44,6 +45,7 @@ void MainWindow::netManagerFinished(QNetworkReply *netReply)
 
     if(readDatabase) this->processDatabase();
     if(showViewer) this->openWebViewer();
+    if(showEditor) this->openWebEditor();
 }
 
 void MainWindow::openWebViewer()
@@ -51,6 +53,20 @@ void MainWindow::openWebViewer()
     webViewDial->prepareViewer(webAnswer);
     webViewDial->show();
     showViewer = false;
+}
+
+void MainWindow::openWebEditor()
+{
+    webEditDial->prepareEditor(webAnswer);
+
+    QUrlQuery params;
+    params.addQueryItem("status", "used");
+
+    netReq.setUrl(QUrl("http://" + confDial->webAddress + ":" + confDial->webPort + "/docs/" + databaseId.at(selectedDocRow)));
+    netManager->put(netReq, params.query(QUrl::FullyEncoded).toUtf8());
+
+    webEditDial->show();
+    showEditor = false;
 }
 
 void MainWindow::on_actionExit_triggered()
@@ -172,12 +188,18 @@ void MainWindow::on_pushButtonView_clicked()
 
 void MainWindow::on_pushButtonEdit_clicked()
 {
+    showEditor = true;
+    netReq.setUrl(QUrl("http://" + confDial->webAddress + ":" + confDial->webPort + "/docs/" + databaseId.at(selectedDocRow)));
+    netManager->get(netReq);
+    /*
+
     QUrlQuery params;
     params.addQueryItem("status", "used");
 
     netReq.setUrl(QUrl("http://" + confDial->webAddress + ":" + confDial->webPort + "/docs/" + databaseId.at(selectedDocRow)));
     netManager->put(netReq, params.query(QUrl::FullyEncoded).toUtf8());
     webEditDial->show();
+    */
 }
 
 void MainWindow::on_pushButtonDelete_clicked()

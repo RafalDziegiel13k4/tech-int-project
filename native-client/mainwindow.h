@@ -28,7 +28,7 @@ public:
 
     QByteArray webTextData;
 
-    bool readDatabase, downloadData, showViewer;
+    bool readDatabase, downloadData, showViewer, showEditor;
 
     int selectedDocRow, listSize;
 
@@ -66,6 +66,8 @@ private slots:
     void saveDocument();
 
     void openWebViewer();
+
+    void openWebEditor();
 
     void editingFinished();
 

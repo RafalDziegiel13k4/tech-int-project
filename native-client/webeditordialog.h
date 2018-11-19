@@ -21,10 +21,16 @@ public:
     explicit WebEditorDialog(QWidget *parent = 0);
     ~WebEditorDialog();
 
-private slots:
+public slots:
     void on_buttonBox_accepted();
 
     void showResults(QString text);
+
+    void setPlaceholder(QString tempText);
+
+    void setContent(QString docText);
+
+    void prepareEditor(QString webText);
 
 private:
     Ui::WebEditorDialog *ui;
