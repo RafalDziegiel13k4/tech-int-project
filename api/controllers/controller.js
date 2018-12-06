@@ -5,6 +5,8 @@ const writePath = "/tmp/";
 Docs = mongoose.model('Docs');
 
 exports.list_all_docs = function(req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+
   Docs.find({}, function(err, doc) {
     if (err) res.send(err);
     res.json(doc);
@@ -12,6 +14,8 @@ exports.list_all_docs = function(req, res) {
 };
 
 exports.create_a_doc = function(req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+
   var new_doc = new Docs(req.body);
   var docId = new_doc._id;
 
@@ -23,6 +27,8 @@ exports.create_a_doc = function(req, res) {
 };
 
 exports.read_a_doc = function(req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+
   Docs.findById(req.params.docId, function(err, doc) {
     if (err) res.send(err);
     else {
@@ -35,6 +41,8 @@ exports.read_a_doc = function(req, res) {
 };
 
 exports.update_a_doc = function(req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+
   var docBody = req.body;
   var docContent = docBody.content;
   var currentTime = new Date();
@@ -50,6 +58,8 @@ exports.update_a_doc = function(req, res) {
 };
 
 exports.delete_a_doc = function(req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+
   Docs.remove({
     _id: req.params.docId
   }, function(err, doc) {
