@@ -47,7 +47,7 @@ void WebEditorDialog::prepareEditor(QString webText)
 
 void WebEditorDialog::showResults(QString text)
 {
-    contentForSave = text;
+    contentForSave = text.replace("\n","");
     this->editingFinished();
 }
 
