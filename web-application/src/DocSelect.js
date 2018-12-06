@@ -26,18 +26,24 @@ class DocSelect extends Component {
     componentWillUnmount() {
         clearInterval(this.interval);
     }
+    createDocsList() {
+        let docList = [];
+        const { apiData } = this.state;
+
+        for (let i = 0; i < apiData.length; i++) {
+            docList.push(<div className="documentBox" key={i}><h3>{apiData[i].name}</h3><p>{apiData[i].status}</p></div>);
+        }
+        return docList;
+    };
     render() {
         const { apiData } = this.state;
         console.log(apiData.length);
         return (
             <div className="App">
                 <header className="App-header">
-                    <div>Docs in database: {apiData.length}</div>
-                    <div>Document 01 Data</div>
-                    <div>Filename: {apiData[0].name}</div>
-                    <div>Status: {apiData[0].status}</div>
-                    <div>Modification Date: {apiData[0].modification_date}</div>
-                    <div>Last Edit: {apiData[0].user}</div>
+                    <div className="documentList">
+                        {this.createDocsList()}
+                    </div>
                 </header>
             </div>
         );
