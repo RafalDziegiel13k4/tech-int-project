@@ -48,6 +48,38 @@
 }
 
 
+
+
+
+
+
+
+
+.modal {
+  font-size: 20px;
+  color: black;
+}
+.modal > .header {
+  width: 100%;
+  border-bottom: 2px solid gray;
+  font-weight: bolder;
+  font-size: 24px;
+  text-align: center;
+  padding: 2px;
+}
+.modal > .content {
+  width: 100%;
+  padding: 10px 5px;
+}
+
+.formCreate {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+
+
+
 .button::-moz-focus-inner{
   border: 0;
   padding: 0;

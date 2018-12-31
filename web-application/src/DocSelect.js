@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Popup from 'reactjs-popup';
 import './App.css';
 import appConfig from './appConfig';
 
@@ -6,6 +7,8 @@ class DocSelect extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            modalCreate: false,
+            createValue: '',
             apiData: [{
                 status: [],
                 user: [],
@@ -13,7 +16,16 @@ class DocSelect extends Component {
                 name: [],
                 modification_date: []
             }],
-        }
+        };
+    }
+    openCreate () {
+        this.setState({ modalCreate: true })
+    }
+    closeCreate () {
+        this.setState({ modalCreate: false })
+    }
+    handleChange(event) {
+        this.setState({createValue: event.target.value});
     }
     getDocsFromApi() {
         fetch(appConfig.ApiServer)
@@ -25,6 +37,18 @@ class DocSelect extends Component {
             method: 'DELETE',
         })
             .then(response => response.json());
+    }
+    addDocsToApi(docName) {
+        fetch(appConfig.ApiServer, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: docName,
+            }),
+        });
     }
     componentDidMount() {
         this.interval = setInterval(() => this.getDocsFromApi(), 250);
@@ -60,6 +84,21 @@ class DocSelect extends Component {
         return (
             <div className="App">
                 <header className="App-header">
+                    <button className="button" onClick={this.openCreate.bind(this)}>Create New Document</button>
+                    <Popup open={this.state.modalCreate} closeOnDocumentClick onClose={this.closeCreate.bind(this)}>
+                        <div className="modal">
+                            <div className="header">Create New Document</div>
+                            <div className="content">
+
+                                <form onSubmit={this.addDocsToApi.bind(this, this.state.createValue)}>
+                                    <label className="formCreate">File Name: <input type="text" value={this.state.createValue} onChange={this.handleChange.bind(this)} />
+                                    </label>
+                                    <input className="small red button" type="submit" value="Submit" />
+                                </form>
+
+                            </div>
+                        </div>
+                    </Popup>
                     <div className="documentList">
                         {this.createDocsList()}
                     </div>
