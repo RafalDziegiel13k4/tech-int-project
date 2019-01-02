@@ -38,6 +38,7 @@ void WebViewerDialog::prepareViewer(QString webText)
 {
     webView->page()->runJavaScript(jQuery);
     webView->page()->runJavaScript(jsRemoveToolbar);
+    webView->page()->runJavaScript(jsDisableEditor);
     webView->page()->runJavaScript(jsDisableEditing);
     this->setPlaceholder("");
 

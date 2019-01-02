@@ -37,6 +37,8 @@ private:
 
     QString jsRemoveToolbar = "qt.jQuery('div.fr-toolbar').remove()";
 
+    QString jsDisableEditor = "qt.jQuery('div#editor').attr('contenteditable','false')";
+
     QString jsDisableEditing = "qt.jQuery('div.fr-view').attr('contenteditable','false')";
 
     QWebEngineView *webView = new QWebEngineView(this);
