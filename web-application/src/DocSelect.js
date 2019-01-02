@@ -48,7 +48,8 @@ class DocSelect extends Component {
             body: JSON.stringify({
                 name: docName,
             }),
-        });
+        })
+            .then(response => response.json());
     }
     componentDidMount() {
         this.interval = setInterval(() => this.getDocsFromApi(), 250);
@@ -78,8 +79,8 @@ class DocSelect extends Component {
                 docList.push(<div className="documentBox" key={i}>
                     <h3>{apiData[i].name}</h3>
                     <p>Status: {apiData[i].status}</p>
-                    <a href="http://localhost:3002/editor"><button className="small green button">View</button></a><br/>
-                    <a href="http://localhost:3002/editor"><button className="small blue button" disabled={disableButton}>Edit</button></a><br/>
+                    <a href={"http://localhost:3002/viewer?" + apiData[i]._id}><button className="small green button">View</button></a><br/>
+                    <a href={"http://localhost:3002/editor?" + apiData[i]._id}><button className="small blue button" disabled={disableButton}>Edit</button></a><br/>
                     <button className="small red button" disabled={disableButton} onClick={this.delDocsFromApi.bind(this, apiData[i]._id)}>Delete</button><br/>
                 </div>);
             }
