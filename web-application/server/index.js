@@ -59,7 +59,7 @@ function createEditor(host, res) {
       JSDOM.fromFile(editorFile).then(dom => {
 
         dom.window.document.head.innerHTML += '<link rel="stylesheet" href="css/buttons.css">\n';
-        dom.window.document.body.innerHTML += `<button class="small red button" style="margin-top:10px;" onclick="window.history.back();">Anuluj</button>`;
+        dom.window.document.body.innerHTML += `<button class="small red button" style="margin-top:10px;" onclick="window.history.back();">Anuluj</button>` + '\n';
 
         if(linkEnd == '/viewer')
         {
@@ -67,8 +67,9 @@ function createEditor(host, res) {
 	}
         else
         {
+          dom.window.document.body.innerHTML += `<script>var pageDocID="${docID}"</script>` + '\n';
           dom.window.document.body.innerHTML += '<script type="text/javascript" src="js/prepare_editor.js"></script>\n';
-          dom.window.document.body.innerHTML += `<button class="small green button" style="margin-left:10px;" onclick="alert('Hello world!')">Zapisz zmiany</button>`;
+          dom.window.document.body.innerHTML += `<button class="small green button" style="margin-left:10px;" onclick="saveDoc();">Zapisz zmiany</button>`;
         }
 
         if(data) dom.window.document.body.innerHTML += `<script>$(document).ready(function() {$('div.fr-view').html('${data}');});</script>`
