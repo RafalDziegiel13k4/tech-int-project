@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Popup from 'reactjs-popup';
 import './App.css';
 import appConfig from './appConfig';
+import openSocket from 'socket.io-client';
 
 class DocSelect extends Component {
     constructor(props) {
@@ -52,7 +53,10 @@ class DocSelect extends Component {
             .then(response => response.json());
     }
     componentDidMount() {
-        this.interval = setInterval(() => this.getDocsFromApi(), 250);
+        this.getDocsFromApi();
+        const websocket = openSocket('http://localhost:3000');
+        websocket.on("refreshlist", () => this.getDocsFromApi());
+        //this.interval = setInterval(() => this.getDocsFromApi(), 250);
     }
     componentWillUnmount() {
         clearInterval(this.interval);
