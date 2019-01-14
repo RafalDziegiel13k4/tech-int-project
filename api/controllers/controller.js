@@ -37,6 +37,7 @@ exports.read_a_doc = function(req, res) {
     else {
       fs.readFile(writePath + req.params.docId, function(err, data) {
         res.send(data);
+        req.app.websocket.emit("refreshlist");
         res.end();
       });
     }
@@ -55,6 +56,7 @@ exports.update_a_doc = function(req, res) {
     if (err) res.send(err);
     else {
       if (docContent) fs.writeFile(writePath + req.params.docId, docContent);
+      req.app.websocket.emit("refreshlist");
     }
     res.json(doc);
   });
