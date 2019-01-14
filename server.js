@@ -16,7 +16,18 @@ mongoose.connect('mongodb://localhost/Docs', { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+var server = app.listen(port);
+var websocket = require('socket.io').listen(server);
+app.websocket = websocket;
+
 routes(app);
-app.listen(port);
 
 console.log('REST API server started on: ' + port);
+
+websocket.on("connection", socket => {
+  console.log("New client connected");
+});
+
+const getApiAndEmit = async websocket => {
+    websocket.emit("refresh", "007");
+};

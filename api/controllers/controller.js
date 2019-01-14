@@ -21,7 +21,10 @@ exports.create_a_doc = function(req, res) {
 
   new_doc.save(function(err, doc) {
     if (err) res.send(err);
-    else fs.writeFile(writePath + docId, "");
+    else {
+      fs.writeFile(writePath + docId, "");
+      req.app.websocket.emit("refreshlist");
+    }
     res.json(doc);
   });
 };
@@ -64,7 +67,10 @@ exports.delete_a_doc = function(req, res) {
     _id: req.params.docId
   }, function(err, doc) {
     if (err) res.send(err);
-    else fs.unlink(writePath + req.params.docId);
+    else {
+      fs.unlink(writePath + req.params.docId);
+      req.app.websocket.emit("refreshlist");
+    }
     res.json({ message: 'Document successfully deleted' });
   });
 };
